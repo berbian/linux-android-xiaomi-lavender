@@ -1,0 +1,9 @@
+# Rules to allow controlling of backlight and leds for video group
+ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chgrp video /sys/class/backlight/%k/brightness"
+ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chmod a+w /sys/class/backlight/%k/brightness"
+# Rules for leds kernel
+ACTION=="add", SUBSYSTEM=="leds", RUN+="/bin/chgrp input /sys/class/leds/%k/brightness"
+ACTION=="add", SUBSYSTEM=="leds", RUN+="/bin/chmod a+w /sys/class/leds/%k/brightness"
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="blue", RUN+="/bin/chmod a+w /sys/class/leds/%k/brightness"
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="red", RUN+="/bin/chmod a+w /sys/class/leds/%k/brightness"
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="green", RUN+="/bin/chmod a+w /sys/class/leds/%k/brightness"
